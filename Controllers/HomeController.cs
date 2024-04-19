@@ -7,6 +7,7 @@ namespace JogadorAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
+        [HttpGet]
         public IActionResult Get()
             => Ok(new { status = "API is up to date", date = DateTime.Now.ToString("dd/MM/yyyy - HH:mm") });
     }
