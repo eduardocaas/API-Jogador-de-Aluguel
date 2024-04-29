@@ -25,6 +25,11 @@ namespace JogadorAPI.Models
         [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 caracteres")]
         public string CPF { get; set; }
 
+        [Column("NOME")]
+        [Required(ErrorMessage = "Nome é obrigatório")]
+        [StringLength(80, MinimumLength = 2, ErrorMessage = "O nome deve ter entre 2 e 80 caracteres")]
+        public string Nome { get; set; }
+
         [Column("SENHA")]
         [Required(ErrorMessage = "Senha é obrigatória")]
         //Validar tamanho no service
