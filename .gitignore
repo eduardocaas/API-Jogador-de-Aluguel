@@ -3,6 +3,9 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+# connection strings
+Data/ApiDapperContext.cs
+
 # dotenv files
 .env
 
