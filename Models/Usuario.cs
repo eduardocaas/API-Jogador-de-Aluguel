@@ -35,10 +35,15 @@ namespace JogadorAPI.Models
         //Validar tamanho no service
         public string Senha { get; set; }
 
-        [Column("ENDERECO")]
-        [Required(ErrorMessage = "Endereço é obrigatório")]
-        [StringLength(100, ErrorMessage = "Endereço deve ter no máximo 100 caracteres")]
-        public string Endereco { get; set; }
+        [Column("CIDADE")]
+        [Required(ErrorMessage = "Cidade é obrigatória")]
+        [StringLength(80, ErrorMessage = "A cidade deve ter até 80 caracteres")]
+        public string Cidade { get; set; }
+
+        [Column("BAIRRO")]
+        [Required(ErrorMessage = "Bairro é obrigatório")]
+        [StringLength(80, ErrorMessage = "O bairro deve ter até 80 caracteres")]
+        public string Bairro { get; set; }
 
         [Column("NIVEL")]
         public short Nivel { get; set; }
