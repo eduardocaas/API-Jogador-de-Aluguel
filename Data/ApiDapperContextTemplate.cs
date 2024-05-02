@@ -1,6 +1,6 @@
 ﻿namespace JogadorAPI.Data
 {
-    public static class ApiDapperContextModel
+    public static class ApiDapperContextTemplate
     {
         public const string CONNECTION_STRING_LOCAL = @"Server=YOURSERVER; 
                                                         User ID=YOURUSERID; 
