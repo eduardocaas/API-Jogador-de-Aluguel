@@ -40,20 +40,24 @@ namespace JogadorAPI.Repositories
         {
             var query = @"SELECT SENHA FROM Usuario WHERE Usuario.EMAIL = @Email";
 
-            var hashSenha = _connection.Query<string>(query, new { Email = email });
-
+            var hashSenha = _connection.Query<dynamic>(query, new { Email = email });
             if (hashSenha.FirstOrDefault() == null)
                 throw new BadRequestException("Email ou senha incorretos");
 
-            return hashSenha.FirstOrDefault();
+            return hashSenha.FirstOrDefault().SENHA;
         }
 
         public LoginSessionDTO GetSessionLoginByEmail(string email)
         {
             var query = @"SELECT ID_USUARIO, EMAIL FROM Usuario WHERE Usuario.EMAIL = @Email";
 
-            var loginSession = _connection.Query<LoginSessionDTO>(query, new { Email = email });
-            return loginSession.FirstOrDefault();
+            var result = _connection.Query<dynamic>(query, new { Email = email });
+
+            LoginSessionDTO loginSession = new LoginSessionDTO();
+            loginSession.Id = result.FirstOrDefault().ID_USUARIO;
+            loginSession.Email = result.FirstOrDefault().EMAIL;
+
+            return loginSession;
         }
     }
 }
