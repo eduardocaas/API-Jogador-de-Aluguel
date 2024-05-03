@@ -1,10 +1,12 @@
-﻿using JogadorAPI.Models;
+﻿using JogadorAPI.DTO;
+using JogadorAPI.Models;
 using JogadorAPI.Repositories;
 using JogadorAPI.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Opw.HttpExceptions;
+using System.Data.Common;
 using System.Net.Mime;
 
 namespace JogadorAPI.Controllers
@@ -52,6 +54,43 @@ namespace JogadorAPI.Controllers
                         date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
                     });
                 }
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult Login(
+            [FromBody] LoginDTO login,
+            [FromServices] MySqlConnection connection)
+        {
+            try
+            {
+                LoginSessionDTO sessionDTO = UsuarioService.Login(login, connection);
+                if (sessionDTO.Id == 0 && sessionDTO.Email.Equals("null"))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new
+                    {
+                        message = "Login ou senha incorretos",
+                        date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                    });
+                }
+                return Ok(sessionDTO);
+            }
+            catch (BadRequestException badException)
+            {
+                return StatusCode((int)badException.StatusCode, new
+                {
+                    message = badException.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     message = exception.Message,
