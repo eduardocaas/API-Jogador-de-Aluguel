@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace JogadorAPI.Models
 {
@@ -7,7 +8,7 @@ namespace JogadorAPI.Models
     public class Usuario
     {
         [Column("ID_USUARIO")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Column("EMAIL")]
         [EmailAddress]
@@ -46,10 +47,10 @@ namespace JogadorAPI.Models
         public string Bairro { get; set; }
 
         [Column("NIVEL")]
-        public short Nivel { get; set; }
+        public short? Nivel { get; set; }
 
         [Column("DATA_CRIACAO")]
-        public DateTime DataCriacao { get; set; }
+        public DateTime? DataCriacao { get; set; }
 
 
     }
