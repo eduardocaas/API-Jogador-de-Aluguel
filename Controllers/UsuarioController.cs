@@ -17,7 +17,10 @@ namespace JogadorAPI.Controllers
         [HttpPost]
         [Route("cadastro")]
         [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Cadastro(
             [FromBody] Usuario usuario,
             [FromServices] MySqlConnection connection)
