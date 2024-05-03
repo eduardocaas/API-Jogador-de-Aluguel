@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using JogadorAPI.DTO;
 using JogadorAPI.Models;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
@@ -45,6 +46,14 @@ namespace JogadorAPI.Repositories
                 throw new BadRequestException("Email ou senha incorretos");
 
             return hashSenha.FirstOrDefault();
+        }
+
+        public LoginSessionDTO GetSessionLoginByEmail(string email)
+        {
+            var query = @"SELECT ID_USUARIO, EMAIL FROM Usuario WHERE Usuario.EMAIL = @Email";
+
+            var loginSession = _connection.Query<LoginSessionDTO>(query, new { Email = email });
+            return loginSession.FirstOrDefault();
         }
     }
 }
