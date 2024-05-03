@@ -10,7 +10,7 @@ namespace JogadorAPI.Models
         public int Id { get; set; }
 
         [Column("EMAIL")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Informe um email válido")]
         [Required(ErrorMessage = "Email é obrigatório")]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "Email deve ter entre 5 e 100 caracteres")]
         public string Email { get; set; }
