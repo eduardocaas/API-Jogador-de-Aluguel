@@ -1,8 +1,8 @@
 ﻿namespace JogadorAPI.DTO
 {
-    public ref struct LoginDTO
+    public struct LoginDTO
     {
-        public string Email;
-        public string Senha;
+        public string Email { get; set; }
+        public string Senha { get; set; }
     }
 }
