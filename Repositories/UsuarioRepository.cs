@@ -33,5 +33,17 @@ namespace JogadorAPI.Repositories
             var rowsAffected = _connection.Execute(sql, data);
             return rowsAffected;
         }
+
+        public string GetPasswordByEmail(string email)
+        {
+            var query = @"SELECT SENHA FROM Usuario WHERE Usuario.EMAIL = @Email";
+
+            var hashSenha = _connection.Query<string>(query, new { Email = email });
+
+            if (hashSenha.FirstOrDefault() == null)
+                throw new BadHttpRequestException("Email ou senha incorretos");
+
+            return hashSenha.FirstOrDefault();
+        }
     }
 }
