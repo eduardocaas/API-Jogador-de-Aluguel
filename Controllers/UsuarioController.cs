@@ -41,6 +41,14 @@ namespace JogadorAPI.Controllers
             }
             catch (Exception exception)
             {
+                if (exception.Message.Contains("Duplicate"))
+                {
+                    return StatusCode(StatusCodes.Status409Conflict, new
+                    {
+                        message = exception.Message,
+                        date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                    });
+                }
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     message = exception.Message,
