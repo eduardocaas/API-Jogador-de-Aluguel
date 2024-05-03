@@ -2,6 +2,7 @@
 using JogadorAPI.Models;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using Opw.HttpExceptions;
 
 namespace JogadorAPI.Repositories
 {
@@ -41,7 +42,7 @@ namespace JogadorAPI.Repositories
             var hashSenha = _connection.Query<string>(query, new { Email = email });
 
             if (hashSenha.FirstOrDefault() == null)
-                throw new BadHttpRequestException("Email ou senha incorretos");
+                throw new BadRequestException("Email ou senha incorretos");
 
             return hashSenha.FirstOrDefault();
         }
