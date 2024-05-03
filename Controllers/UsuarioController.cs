@@ -64,6 +64,10 @@ namespace JogadorAPI.Controllers
 
         [HttpPost]
         [Route("login")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType<LoginSessionDTO>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Login(
             [FromBody] LoginDTO login,
             [FromServices] MySqlConnection connection)
