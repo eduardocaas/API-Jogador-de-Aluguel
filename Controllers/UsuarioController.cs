@@ -2,6 +2,7 @@
 using JogadorAPI.Models;
 using JogadorAPI.Repositories;
 using JogadorAPI.Services;
+using JogadorAPI.Util;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -29,6 +30,15 @@ namespace JogadorAPI.Controllers
         {
             try
             {
+                if (!CpfUtil.IsCpf(usuario.CPF))
+                {
+                    return BadRequest(new
+                    {
+                        message = "Informe um CPF válido",
+                        date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                    });
+                }
+
                 UsuarioService.Create(usuario, connection);
                 return Ok(new
                 {
