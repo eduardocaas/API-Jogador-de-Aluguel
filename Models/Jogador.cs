@@ -7,7 +7,7 @@ namespace JogadorAPI.Models
     public class Jogador
     {
         [Column("ID_JOGADOR")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Column("EMAIL")]
         [EmailAddress(ErrorMessage = "Informe um email válido")]
@@ -46,15 +46,15 @@ namespace JogadorAPI.Models
         public string Bairro { get; set; }
 
         [Column("POSICAO")]
+        [Required(ErrorMessage = "Posição é obrigatório")]
         [Range(0, 10)]
-        // validar com enum no service
         public byte Posicao { get; set; }
 
         [Column("NIVEL")]
-        public short Nivel { get; set; }
+        public short? Nivel { get; set; }
 
         [Column("DATA_CRIACAO")]
-        public DateTime DataCriacao { get; set; }
+        public DateTime? DataCriacao { get; set; }
 
 
     }
