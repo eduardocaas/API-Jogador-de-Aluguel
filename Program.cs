@@ -10,7 +10,9 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddTransient(x =>
     new MySqlConnection(ApiDapperContext.CONNECTION_STRING_LOCAL));
+
 builder.Services.AddTransient<UsuarioRepository>();
+builder.Services.AddTransient<JogadorRepository>();
 
 //builder.Services.AddSwaggerGen();
 
