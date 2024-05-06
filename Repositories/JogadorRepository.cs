@@ -1,6 +1,8 @@
 ﻿using Dapper;
+using JogadorAPI.DTO;
 using JogadorAPI.Models;
 using MySql.Data.MySqlClient;
+using Opw.HttpExceptions;
 
 namespace JogadorAPI.Repositories
 {
@@ -33,6 +35,30 @@ namespace JogadorAPI.Repositories
 
             var rowsAffected = _connection.Execute(sql, data);
             return rowsAffected;
+        }
+
+        public string GetPasswordByEmail(string email)
+        {
+            var query = @"SELECT SENHA FROM Jogador WHERE Jogador.EMAIL = @Email";
+
+            var hashSenha = _connection.Query<dynamic>(query, new { Email = email });
+            if (hashSenha.FirstOrDefault() == null)
+                throw new BadRequestException("Email ou senha incorretos");
+
+            return hashSenha.FirstOrDefault().SENHA;
+        }
+
+        public LoginSessionDTO GetSessionLoginByEmail(string email)
+        {
+            var query = @"SELECT ID_JOGADOR, EMAIL FROM Jogador WHERE Jogador.EMAIL = @Email";
+
+            var result = _connection.Query<dynamic>(query, new { Email = email });
+
+            LoginSessionDTO loginSession = new LoginSessionDTO();
+            loginSession.Id = result.FirstOrDefault().ID_USUARIO;
+            loginSession.Email = result.FirstOrDefault().EMAIL;
+
+            return loginSession;
         }
 
     }
