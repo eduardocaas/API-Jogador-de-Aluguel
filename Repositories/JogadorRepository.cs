@@ -55,7 +55,7 @@ namespace JogadorAPI.Repositories
             var result = _connection.Query<dynamic>(query, new { Email = email });
 
             LoginSessionDTO loginSession = new LoginSessionDTO();
-            loginSession.Id = result.FirstOrDefault().ID_USUARIO;
+            loginSession.Id = result.FirstOrDefault().ID_JOGADOR;
             loginSession.Email = result.FirstOrDefault().EMAIL;
 
             return loginSession;
