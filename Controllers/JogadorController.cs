@@ -1,4 +1,5 @@
-﻿using JogadorAPI.Models;
+﻿using JogadorAPI.DTO;
+using JogadorAPI.Models;
 using JogadorAPI.Services;
 using JogadorAPI.Util;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,47 @@ namespace JogadorAPI.Controllers
                         date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
                     });
                 }
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+        }
+
+        [HttpPost]
+        [Route("login")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType<LoginSessionDTO>(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Login(
+            [FromBody] LoginDTO login,
+            [FromServices] MySqlConnection connection)
+        {
+            try
+            {
+                LoginSessionDTO sessionDTO = JogadorService.Login(login, connection);
+                if (sessionDTO.Id == 0 && sessionDTO.Email.Equals("null"))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new
+                    {
+                        message = "Login ou senha incorretos",
+                        date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                    });
+                }
+                return Ok(sessionDTO);
+            }
+            catch (BadRequestException badException)
+            {
+                return StatusCode((int)badException.StatusCode, new
+                {
+                    message = badException.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     message = exception.Message,
