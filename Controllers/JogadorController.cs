@@ -1,8 +1,10 @@
 ﻿using JogadorAPI.Models;
+using JogadorAPI.Services;
 using JogadorAPI.Util;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Opw.HttpExceptions;
+using System.Net.Mime;
 
 namespace JogadorAPI.Controllers
 {
@@ -10,6 +12,14 @@ namespace JogadorAPI.Controllers
     [ApiController]
     public class JogadorController : ControllerBase
     {
+
+        [HttpPost]
+        [Route("cadastro")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Cadastro(
             [FromBody] Jogador jogador,
             [FromServices] MySqlConnection connection)
@@ -24,6 +34,13 @@ namespace JogadorAPI.Controllers
                         date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
                     });
                 }
+
+                JogadorService.Create(jogador, connection);
+                return Ok(new
+                {
+                    message = "Usuário criado com sucesso",
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
             }
             catch (HttpException hException)
             {
