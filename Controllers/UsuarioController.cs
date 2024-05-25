@@ -3,6 +3,7 @@ using JogadorAPI.Models;
 using JogadorAPI.Repositories;
 using JogadorAPI.Services;
 using JogadorAPI.Util;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -19,6 +20,7 @@ namespace JogadorAPI.Controllers
 
         [HttpPost]
         [Route("cadastro")]
+        [EnableCors("AllowAll")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -74,6 +76,7 @@ namespace JogadorAPI.Controllers
 
         [HttpPost]
         [Route("login")]
+        [EnableCors("AllowAll")]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType<LoginSessionDTO>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
