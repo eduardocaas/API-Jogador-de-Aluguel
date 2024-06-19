@@ -1,4 +1,7 @@
 ﻿using JogadorAPI.InputModels;
+using JogadorAPI.Models;
+using JogadorAPI.Services;
+using JogadorAPI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Opw.HttpExceptions;
@@ -22,7 +25,17 @@ namespace JogadorAPI.Controllers
         {
             try
             {
+                Evento evento = new Evento(
+                                inputModel.IdUsuario,
+                                inputModel.Cidade,
+                                inputModel.Bairro,
+                                inputModel.Horario,
+                                inputModel.DuracaoMinutos,
+                                inputModel.Descricao,
+                                inputModel.Posicao);
 
+                EventoCreateViewModel model = EventoService.Create(evento, connection);
+                return Ok(model);
             }
             catch (HttpException hException)
             {
