@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using JogadorAPI.Models;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace JogadorAPI.Repositories
 {
@@ -53,7 +54,13 @@ namespace JogadorAPI.Repositories
 
         public dynamic SelectEvento(int id)
         {
+            string sql = @"GetEventoJogador";
+            var pars = new { IdEvento = id };
 
+            var dbModel = _connection.Query(
+                sql,
+                pars,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
         }
     }
 }
