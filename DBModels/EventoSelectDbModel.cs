@@ -2,6 +2,28 @@
 {
     public class EventoSelectDbModel
     {
+        public EventoSelectDbModel(
+            int IdEvento,
+            string Descricao,
+            string Cidade,
+            string Bairro,
+            DateTime Horario,
+            ushort DuracaoMinutos,
+            byte Posicao,
+            ushort Custo,
+            string? NomeJogador)
+        {
+            ID_EVENTO = IdEvento;
+            DESCRICAO = Descricao;
+            CIDADE = Cidade;
+            BAIRRO = Bairro;
+            HORARIO = Horario;
+            DURACAO_MINUTOS = DuracaoMinutos;
+            POSICAO = Posicao;
+            CUSTO = Custo;
+            NOME_JOGADOR = NomeJogador;
+        }
+
         public int ID_EVENTO { get; set; }
         public string DESCRICAO { get; set; }
         public string CIDADE { get; set; }
