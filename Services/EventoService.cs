@@ -31,5 +31,10 @@ namespace JogadorAPI.Services
                 eventoSelect.CUSTO,
                 eventoSelect.NOME_JOGADOR);
         }
+
+        public static EventoCreateViewModel GetEvento(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
