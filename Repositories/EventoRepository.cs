@@ -9,5 +9,13 @@ namespace JogadorAPI.Repositories
 
         public EventoRepository(MySqlConnection connection) : base(connection)
             => _connection = connection;
+        public dynamic Create(Evento evento)
+        { 
+        }
+
+        public dynamic SelectEvento(int id)
+        {
+
+        }
     }
 }
