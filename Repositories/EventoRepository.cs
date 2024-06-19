@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using JogadorAPI.DBModels;
 using JogadorAPI.Models;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -61,6 +62,18 @@ namespace JogadorAPI.Repositories
                 sql,
                 pars,
                 commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            return new EventoSelectDbModel(
+                dbModel.ID_EVENTO,
+                dbModel.DESCRICAO,
+                dbModel.CIDADE,
+                dbModel.BAIRRO,
+                dbModel.HORARIO,
+                //DateTime.ParseExact(dbModel.HORARIO, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture),
+                (ushort)dbModel.DURACAO_MINUTOS,
+                (byte)dbModel.POSICAO,
+                (ushort)dbModel.CUSTO,
+                dbModel.NOME_JOGADOR);
         }
     }
 }
