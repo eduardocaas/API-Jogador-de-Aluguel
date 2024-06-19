@@ -1,6 +1,8 @@
 ﻿namespace JogadorAPI.InputModels
 {
-    public class LoginInputModel
+    public struct LoginInputModel
     {
+        public string Email { get; set; }
+        public string Senha { get; set; }
     }
 }
