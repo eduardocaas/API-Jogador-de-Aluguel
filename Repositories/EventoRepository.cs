@@ -1,4 +1,5 @@
-﻿using JogadorAPI.Models;
+﻿using Dapper;
+using JogadorAPI.Models;
 using MySql.Data.MySqlClient;
 
 namespace JogadorAPI.Repositories
@@ -38,6 +39,16 @@ namespace JogadorAPI.Repositories
                 Descricao = evento.Descricao,
                 Posicao = evento.Posicao
             };
+
+            var rows = _connection.Execute(sql1, data);
+            if (rows != 0)
+            {
+                var sql2 = "SELECT LAST_INSERT_ID()";
+                var id = _connection.QuerySingle<int>(sql2);
+
+                return id;
+            }
+            return 0;
         }
 
         public dynamic SelectEvento(int id)
