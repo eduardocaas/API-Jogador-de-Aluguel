@@ -1,8 +1,7 @@
 ﻿using Dapper;
-using JogadorAPI.DTO;
 using JogadorAPI.Models;
+using JogadorAPI.ViewModels;
 using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
 using Opw.HttpExceptions;
 
 namespace JogadorAPI.Repositories
@@ -47,13 +46,13 @@ namespace JogadorAPI.Repositories
             return hashSenha.FirstOrDefault().SENHA;
         }
 
-        public LoginSessionDTO GetSessionLoginByEmail(string email)
+        public LoginSessionViewModel GetSessionLoginByEmail(string email)
         {
             var query = @"SELECT ID_USUARIO, EMAIL FROM Usuario WHERE Usuario.EMAIL = @Email";
 
             var result = _connection.Query<dynamic>(query, new { Email = email });
 
-            LoginSessionDTO loginSession = new LoginSessionDTO();
+            LoginSessionViewModel loginSession = new LoginSessionViewModel();
             loginSession.Id = result.FirstOrDefault().ID_USUARIO;
             loginSession.Email = result.FirstOrDefault().EMAIL;
 

@@ -1,8 +1,8 @@
-﻿using JogadorAPI.DTO;
-using JogadorAPI.InputModels;
+﻿using JogadorAPI.InputModels;
 using JogadorAPI.Models;
 using JogadorAPI.Services;
 using JogadorAPI.Util;
+using JogadorAPI.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -76,7 +76,7 @@ namespace JogadorAPI.Controllers
         [Route("login")]
         [EnableCors("AllowAll")]
         [Consumes(MediaTypeNames.Application.Json)]
-        [ProducesResponseType<LoginSessionDTO>(StatusCodes.Status200OK)]
+        [ProducesResponseType<LoginSessionViewModel>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Login(
@@ -85,8 +85,8 @@ namespace JogadorAPI.Controllers
         {
             try
             {
-                LoginSessionDTO sessionDTO = JogadorService.Login(login, connection);
-                if (sessionDTO.Id == 0 && sessionDTO.Email.Equals("null"))
+                LoginSessionViewModel loginSession = JogadorService.Login(login, connection);
+                if (loginSession.Id == 0 && loginSession.Email.Equals("null"))
                 {
                     return StatusCode(StatusCodes.Status400BadRequest, new
                     {
@@ -94,7 +94,7 @@ namespace JogadorAPI.Controllers
                         date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
                     });
                 }
-                return Ok(sessionDTO);
+                return Ok(loginSession);
             }
             catch (BadRequestException badException)
             {

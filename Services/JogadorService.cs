@@ -1,7 +1,7 @@
-﻿using JogadorAPI.DTO;
-using JogadorAPI.InputModels;
+﻿using JogadorAPI.InputModels;
 using JogadorAPI.Models;
 using JogadorAPI.Repositories;
+using JogadorAPI.ViewModels;
 using MySql.Data.MySqlClient;
 using Opw.HttpExceptions;
 using Scrypt;
@@ -25,7 +25,7 @@ namespace JogadorAPI.Services
                 throw new HttpException("Falha ao salvar dados no banco de dados, tente novamente mais tarde");
         }
 
-        public static LoginSessionDTO Login(
+        public static LoginSessionViewModel Login(
             LoginInputModel login,
             MySqlConnection connection)
         {
@@ -38,7 +38,7 @@ namespace JogadorAPI.Services
             if (areEquals == true)
                 return repository.GetSessionLoginByEmail(login.Email);
 
-            return new LoginSessionDTO { Id = 0, Email = "null" };
+            return new LoginSessionViewModel { Id = 0, Email = "null" };
         }
     }
 }
