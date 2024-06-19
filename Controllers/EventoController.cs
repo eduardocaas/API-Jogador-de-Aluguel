@@ -34,6 +34,14 @@ namespace JogadorAPI.Controllers
             }
             catch (Exception exception)
             {
+                if (exception.Message.Contains("foreign"))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, new
+                    {
+                        message = "Id de usuário inválido",
+                        date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                    });
+                }
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
                     message = exception.Message,
