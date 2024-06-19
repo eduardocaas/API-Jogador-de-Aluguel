@@ -6,6 +6,24 @@ namespace JogadorAPI.Models
     [Table("Evento")]
     public class Evento
     {
+        public Evento(int? idUsuario,
+            string cidade,
+            string bairro,
+            DateTime? horario,
+            ushort?
+            duracaoMinutos,
+            string descricao,
+            byte? posicao)
+        {
+            IdUsuario = idUsuario;
+            Cidade = cidade;
+            Bairro = bairro;
+            Horario = horario;
+            DuracaoMinutos = duracaoMinutos;
+            Descricao = descricao;
+            Posicao = posicao;
+        }
+
         [Column("ID_EVENTO")]
         public int Id { get; set; }
 
