@@ -1,4 +1,7 @@
-﻿namespace JogadorAPI.InputModels
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace JogadorAPI.InputModels
 {
     public struct EventoInputModel
     {
