@@ -19,6 +19,7 @@ builder.Services.AddTransient(x =>
 
 builder.Services.AddTransient<UsuarioRepository>();
 builder.Services.AddTransient<JogadorRepository>();
+builder.Services.AddTransient<EventoRepository>();
 
 //builder.Services.AddSwaggerGen();
 
