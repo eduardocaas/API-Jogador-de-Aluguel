@@ -1,4 +1,5 @@
 ﻿using JogadorAPI.DTO;
+using JogadorAPI.InputModels;
 using JogadorAPI.Models;
 using JogadorAPI.Repositories;
 using MySql.Data.MySqlClient;
@@ -25,7 +26,7 @@ namespace JogadorAPI.Services
         }
 
         public static LoginSessionDTO Login(
-            LoginDTO login,
+            LoginInputModel login,
             MySqlConnection connection)
         {
             UsuarioRepository repository = new UsuarioRepository(connection);

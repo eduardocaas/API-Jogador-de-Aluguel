@@ -1,4 +1,5 @@
 ﻿using JogadorAPI.DTO;
+using JogadorAPI.InputModels;
 using JogadorAPI.Models;
 using JogadorAPI.Services;
 using JogadorAPI.Util;
@@ -79,7 +80,7 @@ namespace JogadorAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Login(
-            [FromBody] LoginDTO login,
+            [FromBody] LoginInputModel login,
             [FromServices] MySqlConnection connection)
         {
             try
