@@ -4,6 +4,28 @@ namespace JogadorAPI.ViewModels
 {
     public struct EventoCreateViewModel
     {
+        public EventoCreateViewModel(
+            int id,
+            string descricao,
+            string cidade,
+            string bairro,
+            DateTime horario,
+            ushort duracaoMinutos,
+            byte posicao,
+            ushort custo,
+            string? nomeJogador)
+        {
+            Id = id;
+            Descricao = descricao;
+            Cidade = cidade;
+            Bairro = bairro;
+            Horario = horario;
+            DuracaoMinutos = duracaoMinutos;
+            Posicao = posicao;
+            Custo = custo;
+            NomeJogador = nomeJogador;
+        }
+
         public int Id { get; set; }
         public string Descricao { get; set; }
         public string Cidade { get; set; }
