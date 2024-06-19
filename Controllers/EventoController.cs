@@ -1,6 +1,7 @@
 ﻿using JogadorAPI.InputModels;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Opw.HttpExceptions;
 using System.Net.Mime;
 
 namespace JogadorAPI.Controllers
@@ -19,7 +20,26 @@ namespace JogadorAPI.Controllers
             [FromBody] EventoInputModel inputModel,
             [FromServices] MySqlConnection connection)
         {
+            try
+            {
 
+            }
+            catch (HttpException hException)
+            {
+                return StatusCode((int)hException.StatusCode, new
+                {
+                    message = hException.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
         }
     }
 }
