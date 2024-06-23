@@ -26,8 +26,8 @@
 
 ### Funcionamento
 
-<a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/usuario_vazio.jpg" target="_blank">Página demonstração 1</a>
-<a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/usuario_criar.jpg" target="_blank">Página demonstração 2</a>
-<a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/usuario_dados.jpg" target="_blank">Página demonstração 3</a>
-<a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/jogador_vazio.jpg" target="_blank">Página demonstração 4</a>
-<a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/jogador_dados.jpg" target="_blank">Página demonstração 5</a>
+> - <a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/usuario_vazio.jpg" target="_blank">Página demonstração 1</a> <br>
+> - <a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/usuario_criar.jpg" target="_blank">Página demonstração 2</a> <br>
+> - <a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/usuario_dados.jpg" target="_blank">Página demonstração 3</a> <br>
+> - <a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/jogador_vazio.jpg" target="_blank">Página demonstração 4</a> <br>
+> - <a href="https://jogadoraluguelbucket.s3.sa-east-1.amazonaws.com/jogador_dados.jpg" target="_blank">Página demonstração 5</a>
