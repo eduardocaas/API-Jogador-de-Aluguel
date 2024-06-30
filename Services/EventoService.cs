@@ -43,7 +43,8 @@ namespace JogadorAPI.Services
 
             EventoSelectDbModel eventoSelect = repository.SelectEvento((int)eventoId);
 
-       
+            if (eventoSelect.ID_EVENTO == 0 || eventoSelect.ID_EVENTO == null)
+                throw new NotFoundException($"Evento para usuário com id: {usuarioId} não encontrado");
 
             return new EventoSelectViewModel(
                 eventoSelect.ID_EVENTO,
