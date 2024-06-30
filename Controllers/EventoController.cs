@@ -103,5 +103,16 @@ namespace JogadorAPI.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Get(
+            [FromQuery] string cidade,
+            [FromQuery] byte posicao)
+        {
+            throw new NotImplementedException();
+            // Retorna evento apenas para jogador -> escalado -> retorna 404 se nao tiver escalado
+        }
     }
 }
