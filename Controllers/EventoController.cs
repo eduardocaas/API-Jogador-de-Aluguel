@@ -112,7 +112,17 @@ namespace JogadorAPI.Controllers
             [FromQuery] byte posicao)
         {
             throw new NotImplementedException();
+            // Retorna lista com eventos -> Visão de jogador
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Get()
+        {
+            throw new NotImplementedException();
             // Retorna evento apenas para jogador -> escalado -> retorna 404 se nao tiver escalado
+            
         }
     }
 }
