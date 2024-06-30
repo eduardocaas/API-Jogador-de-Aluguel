@@ -120,7 +120,28 @@ namespace JogadorAPI.Repositories
                         AND 
                             e.STATUS = 0";
 
-            
+            IEnumerable<dynamic> models = _connection.Query(sql, new { Cidade = cidade, Posicao = posicao });
+            var modelList = models.ToList();
+
+            if (modelList.Count != 0)
+            {
+                List<EventoJogadorViewModel> eventos = new List<EventoJogadorViewModel>();
+                eventos = modelList.Select(item =>
+                    new EventoJogadorViewModel(
+                        IdEvento: item.ID_EVENTO,
+                        Descricao: item.DESCRICAO,
+                        Cidade: item.CIDADE,
+                        Bairro: item.BAIRRO,
+                        Horario: item.HORARIO,
+                        DuracaoMinutos: item.DURACAO_MINUTOS,
+                        Posicao: item.POSICAO,
+                        Custo: item.CUSTO,
+                        NomeUsuario: item.NOME_USUARIO)).ToList();
+
+                return eventos;
+            }
+
+            return new List<EventoJogadorViewModel>();
         }
     }
 }
