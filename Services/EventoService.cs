@@ -32,9 +32,29 @@ namespace JogadorAPI.Services
                 eventoSelect.NOME_JOGADOR);
         }
 
-        public static EventoSelectViewModel GetEvento(int id)
+        public static EventoSelectViewModel GetEventoUsuario(
+            int usuarioId,
+            MySqlConnection connection)
         {
-            throw new NotImplementedException();
+            EventoRepository repository = new EventoRepository(connection);
+            int? eventoId = repository.SelectIdEvento(usuarioId);
+            if (eventoId == 0 || eventoId == null)
+                throw new NotFoundException($"Evento para usuário com id: {usuarioId} não encontrado");
+
+            EventoSelectDbModel eventoSelect = repository.SelectEvento((int)eventoId);
+
+       
+
+            return new EventoSelectViewModel(
+                eventoSelect.ID_EVENTO,
+                eventoSelect.DESCRICAO,
+                eventoSelect.CIDADE,
+                eventoSelect.BAIRRO,
+                eventoSelect.HORARIO,
+                eventoSelect.DURACAO_MINUTOS,
+                eventoSelect.POSICAO,
+                eventoSelect.CUSTO,
+                eventoSelect.NOME_JOGADOR);
         }
     }
 }
