@@ -2,9 +2,9 @@
 
 namespace JogadorAPI.ViewModels
 {
-    public struct EventoCreateViewModel
+    public struct EventoSelectViewModel
     {
-        public EventoCreateViewModel(
+        public EventoSelectViewModel(
             int id,
             string descricao,
             string cidade,

@@ -9,7 +9,7 @@ namespace JogadorAPI.Services
 {
     public static class EventoService
     {
-        public static EventoCreateViewModel Create(
+        public static EventoSelectViewModel Create(
             Evento evento,
             MySqlConnection connection)
         {
@@ -20,7 +20,7 @@ namespace JogadorAPI.Services
 
             EventoSelectDbModel eventoSelect = repository.SelectEvento(id);
 
-            return new EventoCreateViewModel(
+            return new EventoSelectViewModel(
                 eventoSelect.ID_EVENTO,
                 eventoSelect.DESCRICAO,
                 eventoSelect.CIDADE,
@@ -32,7 +32,7 @@ namespace JogadorAPI.Services
                 eventoSelect.NOME_JOGADOR);
         }
 
-        public static EventoCreateViewModel GetEvento(int id)
+        public static EventoSelectViewModel GetEvento(int id)
         {
             throw new NotImplementedException();
         }

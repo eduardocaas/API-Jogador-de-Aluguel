@@ -34,7 +34,7 @@ namespace JogadorAPI.Controllers
                                 inputModel.Descricao,
                                 inputModel.Posicao);
 
-                EventoCreateViewModel model = EventoService.Create(evento, connection);
+                EventoSelectViewModel model = EventoService.Create(evento, connection);
                 return Ok(model);
             }
             catch (HttpException hException)
