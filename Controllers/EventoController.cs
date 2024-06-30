@@ -72,6 +72,29 @@ namespace JogadorAPI.Controllers
             [FromRoute] int usuarioId,
             [FromServices] MySqlConnection connection) // Get visão de Usuário - retorna Evento
         {
+            try
+            {
+                EventoSelectViewModel model = EventoService.GetEventoUsuario(usuarioId, connection);
+                return Ok(model);
+            }
+            catch (NotFoundException nfException)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new
+                {
+                    message = nfException,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
+                
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
         }
     }
 }
