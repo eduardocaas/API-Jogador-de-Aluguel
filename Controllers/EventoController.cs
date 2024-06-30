@@ -87,7 +87,14 @@ namespace JogadorAPI.Controllers
             }
             catch (Exception exception)
             {
-                
+                if (exception.Message.Contains("binding on a null"))
+                {
+                    return StatusCode(StatusCodes.Status404NotFound, new
+                    {
+                        message = $"Evento para usuário com id: {usuarioId} não encontrado",
+                        date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                    });
+                }
 
                 return StatusCode(StatusCodes.Status500InternalServerError, new
                 {
