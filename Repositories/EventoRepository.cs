@@ -53,7 +53,7 @@ namespace JogadorAPI.Repositories
             return 0;
         }
 
-        public dynamic SelectEvento(int id)
+        public dynamic SelectEvento(int id) // Visão de Usuário
         {
             string sql = @"GetEventoJogador";
             var pars = new { IdEvento = id };
@@ -74,6 +74,21 @@ namespace JogadorAPI.Repositories
                 (byte)dbModel.POSICAO,
                 (ushort)dbModel.CUSTO,
                 dbModel.NOME_JOGADOR);
+        }
+
+        public dynamic SelectIdEvento(int usuarioId)
+        {
+            var sql = @"SELECT 
+                            ID_EVENTO
+                        FROM
+                            Evento
+                        WHERE 
+                            USUARIO_ID = @UsuarioId
+                        LIMIT 1";
+
+            var model = _connection.Query(sql, new { UsuarioId = usuarioId });
+            dynamic? id = model.FirstOrDefault().ID_EVENTO;
+            return id;
         }
     }
 }
