@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using JogadorAPI.DBModels;
 using JogadorAPI.Models;
+using JogadorAPI.ViewModels;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -89,6 +90,37 @@ namespace JogadorAPI.Repositories
             var model = _connection.Query(sql, new { UsuarioId = usuarioId });
             dynamic? id = model.FirstOrDefault().ID_EVENTO;
             return id;
+        }
+
+        public dynamic SelectEventoList(string cidade, byte posicao) // Visão de Jogador
+        {
+            string sql = @" 
+                        SELECT
+                            e.ID_EVENTO,
+                            e.DESCRICAO,
+                            e.CIDADE,
+                            e.BAIRRO,
+                            e.HORARIO,
+                            e.DURACAO_MINUTOS,
+                            e.POSICAO,
+                            e.CUSTO,
+                            u.NOME AS 'NOME_USUARIO' 
+                        FROM 
+                            EVENTO e 
+                        LEFT JOIN 
+                            Usuario u 
+                        ON 
+                            e.USUARIO_ID = u.ID_USUARIO 
+                        WHERE 
+                            e.JOGADOR_ID IS NULL
+                        AND 
+                            e.CIDADE = @Cidade 
+                        AND 
+                            e.POSICAO = @Posicao
+                        AND 
+                            e.STATUS = 0";
+
+            
         }
     }
 }
