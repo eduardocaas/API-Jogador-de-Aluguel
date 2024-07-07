@@ -57,5 +57,13 @@ namespace JogadorAPI.Services
                 eventoSelect.CUSTO,
                 eventoSelect.NOME_JOGADOR);
         }
+
+        public static List<EventoJogadorViewModel> GetEventosJogador(
+            string cidade,
+            byte posicao,
+            MySqlConnection connection)
+        {
+
+        }
     }
 }
