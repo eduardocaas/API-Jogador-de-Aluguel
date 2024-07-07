@@ -63,7 +63,8 @@ namespace JogadorAPI.Services
             byte posicao,
             MySqlConnection connection)
         {
-
+            EventoRepository repository = new EventoRepository(connection);
+            return repository.SelectEventoList(cidade, posicao);
         }
     }
 }
