@@ -109,7 +109,8 @@ namespace JogadorAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get(
             [FromQuery] string cidade,
-            [FromQuery] byte posicao)
+            [FromQuery] byte posicao,
+            [FromServices] MySqlConnection connection)
         {
             try
             {
