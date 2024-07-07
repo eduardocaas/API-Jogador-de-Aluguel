@@ -111,8 +111,22 @@ namespace JogadorAPI.Controllers
             [FromQuery] string cidade,
             [FromQuery] byte posicao)
         {
-            throw new NotImplementedException();
-            // Retorna lista com eventos -> Visão de jogador
+            try
+            {
+                List<EventoJogadorViewModel> eventos = EventoService.GetEventosJogador(cidade, posicao, connection);
+                if (eventos.Count == 0)
+                    return NoContent();
+
+                return Ok(eventos);
+            }
+            catch (Exception exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
         }
 
         [HttpGet]
