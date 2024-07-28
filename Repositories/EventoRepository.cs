@@ -169,5 +169,15 @@ namespace JogadorAPI.Repositories
                 dbModel.CUSTO,
                 dbModel.NOME_USUARIO);
         }
+
+        public int UpdateEscalar(int jogadorId, int eventoId)
+        {
+            string sql = @"UPDATE Evento SET JOGADOR_ID = @JogadorId WHERE ID_EVENTO = @EventoId";
+
+            var pars = new { JogadorId = jogadorId, EventoId = eventoId };
+            var rows = _connection.Execute(sql, pars);
+
+            return rows == 0 ? 0 : 1;
+        }
     }
 }
