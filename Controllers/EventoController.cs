@@ -140,7 +140,27 @@ namespace JogadorAPI.Controllers
             [FromRoute] int id,
             [FromServices] MySqlConnection connection)
         {
-           
+            try
+            {
+                EventoEscaladoViewModel viewModel = EventoService.GetEventoEscalado(id, connection);
+                return Ok(viewModel);
+            }
+            catch (NotFoundException nfException)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new
+                {
+                    message = nfException.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
         }
     }
 }
