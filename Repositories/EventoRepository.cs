@@ -189,5 +189,15 @@ namespace JogadorAPI.Repositories
 
             return rows == 0 ? 0 : 1;
         }
+
+        public int CancelarUsuario(int usuarioId)
+        {
+            string sql = @"DELETE FROM Evento WHERE USUARIO_ID = @UsuarioId";
+
+            var pars = new { UsuarioId = usuarioId };
+            var rows = _connection.Execute(sql, pars);
+
+            return rows == 0 ? 0 : 1;
+        }
     }
 }
