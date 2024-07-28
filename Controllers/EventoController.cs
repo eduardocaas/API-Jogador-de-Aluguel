@@ -237,7 +237,27 @@ namespace JogadorAPI.Controllers
             [FromRoute] int usuarioId,
             [FromServices] MySqlConnection connection)
         {
-           
+            try
+            {
+                EventoService.CancelarUsuario(usuarioId, connection);
+                return NoContent();
+            }
+            catch (NotFoundException nfException)
+            {
+                return StatusCode(StatusCodes.Status404NotFound, new
+                {
+                    message = nfException.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
         }
     }
 }
