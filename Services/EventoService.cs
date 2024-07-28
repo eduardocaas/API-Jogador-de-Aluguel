@@ -91,7 +91,14 @@ namespace JogadorAPI.Services
             int eventoId,
             MySqlConnection connection)
         {
-           
+            EventoRepository repository = new EventoRepository(connection);
+            int rows = repository.UpdateEscalar(jogadorId, eventoId);
+
+            if (rows == 0)
+                throw new HttpException("Falha ao tentar escalar");
+
+            Thread.Sleep(1000);
+            return GetEventoEscalado(jogadorId, connection);
         }
     }
 }
