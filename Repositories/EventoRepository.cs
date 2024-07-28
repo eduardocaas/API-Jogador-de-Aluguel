@@ -3,6 +3,7 @@ using JogadorAPI.DBModels;
 using JogadorAPI.Models;
 using JogadorAPI.ViewModels;
 using MySql.Data.MySqlClient;
+using Opw.HttpExceptions;
 using System.Data;
 
 namespace JogadorAPI.Repositories
@@ -142,6 +143,11 @@ namespace JogadorAPI.Repositories
             }
 
             return new List<EventoJogadorViewModel>();
+        }
+
+        public dynamic SelectEventoEscalado(int id) // Visão de Jogador
+        {
+            
         }
     }
 }
