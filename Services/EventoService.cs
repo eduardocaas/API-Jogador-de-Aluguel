@@ -111,5 +111,16 @@ namespace JogadorAPI.Services
             if (rows == 0)
                 throw new NotFoundException("Falha ao tentar cancelar");
         }
+
+        public static void CancelarUsuario(
+            int id,
+            MySqlConnection connection)
+        {
+            EventoRepository repository = new EventoRepository(connection);
+            int rows = repository.CancelarUsuario(id);
+
+            if (rows == 0)
+                throw new NotFoundException("Falha ao tentar cancelar");
+        }
     }
 }
