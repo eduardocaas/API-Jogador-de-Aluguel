@@ -195,5 +195,17 @@ namespace JogadorAPI.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        [Route("jogador/cancelar/{jogadorId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult CancelarJogador(
+            [FromRoute] int jogadorId,
+            [FromServices] MySqlConnection connection)
+        {
+           
+        }
     }
 }
