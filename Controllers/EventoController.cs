@@ -105,6 +105,7 @@ namespace JogadorAPI.Controllers
         }
 
         [HttpGet]
+        [Route("jogador")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Get(
