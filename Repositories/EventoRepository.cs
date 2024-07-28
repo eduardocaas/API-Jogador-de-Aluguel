@@ -147,7 +147,27 @@ namespace JogadorAPI.Repositories
 
         public dynamic SelectEventoEscalado(int id) // Visão de Jogador
         {
-            
+            string sql = @"GetEventoEscalado";
+            var pars = new { IdJogador = id };
+
+            dynamic? dbModel = _connection.Query(
+                sql,
+                pars,
+                commandType: CommandType.StoredProcedure).FirstOrDefault();
+
+            if (dbModel == null)
+                throw new NotFoundException($"Evento para jogador com id: {id} não encontrado");
+
+            return new EventoEscaladoDbModel(
+                dbModel.ID_EVENTO,
+                dbModel.DESCRICAO,
+                dbModel.CIDADE,
+                dbModel.BAIRRO,
+                dbModel.HORARIO,
+                dbModel.DURACAO_MINUTOS,
+                dbModel.POSICAO,
+                dbModel.CUSTO,
+                dbModel.NOME_USUARIO);
         }
     }
 }
