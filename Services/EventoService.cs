@@ -85,5 +85,13 @@ namespace JogadorAPI.Services
                 eventoModel.CUSTO,
                 eventoModel.NOME_USUARIO);
         }
+
+        public static EventoEscaladoViewModel EventoEscalar(
+            int jogadorId,
+            int eventoId,
+            MySqlConnection connection)
+        {
+           
+        }
     }
 }
