@@ -132,13 +132,15 @@ namespace JogadorAPI.Controllers
         }
 
         [HttpGet]
+        [Route("jogador/{id:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Get()
+        public IActionResult GetEscalado(
+            [FromRoute] int id,
+            [FromServices] MySqlConnection connection)
         {
-            throw new NotImplementedException();
-            // Retorna evento apenas para jogador -> escalado -> retorna 404 se nao tiver escalado
-            
+           
         }
     }
 }
