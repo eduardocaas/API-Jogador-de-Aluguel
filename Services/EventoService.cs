@@ -66,5 +66,24 @@ namespace JogadorAPI.Services
             EventoRepository repository = new EventoRepository(connection);
             return repository.SelectEventoList(cidade, posicao);
         }
+
+        public static EventoEscaladoViewModel GetEventoEscalado(
+            int jogadorId,
+            MySqlConnection connection)
+        {
+            EventoRepository repository = new EventoRepository(connection);
+            dynamic eventoModel = repository.SelectEventoEscalado(jogadorId);
+
+            return new EventoEscaladoViewModel(
+                eventoModel.ID_EVENTO,
+                eventoModel.DESCRICAO,
+                eventoModel.CIDADE,
+                eventoModel.BAIRRO,
+                eventoModel.HORARIO,
+                eventoModel.DURACAO_MINUTOS,
+                eventoModel.POSICAO,
+                eventoModel.CUSTO,
+                eventoModel.NOME_USUARIO);
+        }
     }
 }
