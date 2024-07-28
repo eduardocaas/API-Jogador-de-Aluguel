@@ -162,5 +162,18 @@ namespace JogadorAPI.Controllers
                 });
             }
         }
+
+        [HttpGet]
+        [Route("jogador/{jogadorId:int}/{eventoId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Escalar(
+            [FromRoute] int jogadorId,
+            [FromRoute] int eventoId,
+            [FromServices] MySqlConnection connection)
+        {
+           
+        }
     }
 }
