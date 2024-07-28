@@ -173,7 +173,27 @@ namespace JogadorAPI.Controllers
             [FromRoute] int eventoId,
             [FromServices] MySqlConnection connection)
         {
-           
+            try
+            {
+                EventoEscaladoViewModel viewModel = EventoService.EventoEscalar(jogadorId, eventoId, connection);
+                return Ok(viewModel);
+            }
+            catch (HttpException hException)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, new
+                {
+                    message = hException.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
+            catch (Exception exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    message = exception.Message,
+                    date = DateTime.Now.ToString("dd/MM/yyyy - H:mm")
+                });
+            }
         }
     }
 }
