@@ -179,5 +179,15 @@ namespace JogadorAPI.Repositories
 
             return rows == 0 ? 0 : 1;
         }
+
+        public int CancelarJogador(int jogadorId)
+        {
+            string sql = @"UPDATE Evento SET JOGADOR_ID = null WHERE JOGADOR_ID = @JogadorId";
+
+            var pars = new { JogadorId = jogadorId };
+            var rows = _connection.Execute(sql, pars);
+
+            return rows == 0 ? 0 : 1;
+        }
     }
 }
