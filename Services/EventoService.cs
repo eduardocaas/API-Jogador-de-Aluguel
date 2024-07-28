@@ -100,5 +100,16 @@ namespace JogadorAPI.Services
             Thread.Sleep(1000);
             return GetEventoEscalado(jogadorId, connection);
         }
+
+        public static void CancelarJogador(
+            int id,
+            MySqlConnection connection)
+        {
+            EventoRepository repository = new EventoRepository(connection);
+            int rows = repository.CancelarJogador(id);
+
+            if (rows == 0)
+                throw new NotFoundException("Falha ao tentar cancelar");
+        }
     }
 }
